@@ -5,14 +5,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin/application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
   <body>
-  funciona
+    <% if not user_signed_in? %>
+      <%= render '/layouts/admin/header_no_login' %>
+    <% else %>
+      <%= render '/layouts/admin/header_login' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
