@@ -1,1 +1,22 @@
 rails db:drop db:create db:migrate
+
+
+
+Devise => problema con el username (como lo hago para que sea el campo para login)
+Devise => Como lo deshabilito si no estan en el namespace admin
+Breadcrumb => Se ve feo
+
+
+
+
+
+
+
+
+
+
+Cosas insignificantes
+
+Botton nuevo usuario a la derecha
+
+Arreglar los mensajes de error

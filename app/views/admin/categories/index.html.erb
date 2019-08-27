@@ -1,0 +1,42 @@
+<% @category = Category.new%>
+
+<div class ="container">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nueva Categoria</button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nueva Categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= form_for @category , url: admin_categories_path(@category) do |f| %>
+            <div class="form-group">
+              <%= f.label :name, "Categoria: ", class:"col-form-lab" %>
+              <%= f.text_field :name,class: "form-control" ,id:"recipient-name", placeholder: "Escriba el nombre de la categoria", required:true  %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+              <%= f.submit "Nueva Categoria", class:"btn btn-primary" %>
+            </div>
+          <% end %>
+         
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <hr>
+  <% @categories.order("created_at desc").each do |category| %>
+    <div>
+      <div class="panel-heading d-flex">
+        <h4 class="d-inline"><%= category.name %></h4>
+        <%= link_to "X", admin_category_path(:id => category.id), :method => :delete,  class:"d-inline material-icons ml-auto",data:{confirm:"Estas seguro de borrar esta Categoria"} %>
+      </div>
+      <hr>
+    </div>
+  <% end %>
+
+</div>

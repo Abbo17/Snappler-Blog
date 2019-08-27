@@ -4,7 +4,7 @@
     <title>SnapplerBlog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <%= stylesheet_link_tag    'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'admin/application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -15,6 +15,34 @@
     <% else %>
       <%= render '/layouts/admin/header_login' %>
     <% end %>
-    <%= yield %>
+
+    <% if user_signed_in? %>
+      <br>
+      <div class="row ml-3 mr-3">
+        <div class="col-3">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <%= link_to "Inicio", admin_root_path, :class => current_page?(admin_root_path) ? 'nav-link active' : 'nav-link'%> 
+            <%= link_to "Productos", admin_products_path, :class => current_page?(admin_products_path) ? 'nav-link active' : 'nav-link'%>
+            <%= link_to "Categorias", admin_categories_path, :class => current_page?(admin_categories_path) ? 'nav-link active' : 'nav-link'%>
+            <%= link_to "Tags", admin_tags_path, :class => current_page?(admin_tags_path) ? 'nav-link active' : 'nav-link'%>
+            <%= link_to "Usuarios", admin_users_path, :class => current_page?(admin_users_path) ? 'nav-link active' : 'nav-link'%>
+            <%= link_to "Configuración Web", admin_tags_path, :class => current_page?(admin_tags_path) ? 'nav-link active' : 'nav-link'%>
+            
+          </div>
+        </div>
+        <div class="col-9">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <%= render_breadcrumbs :tag => :li ,:separator => " / " %>
+            </ol>
+          </nav>
+          <br>
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+
   </body>
 </html>

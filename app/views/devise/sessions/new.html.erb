@@ -16,11 +16,11 @@
 					<div class="form-group form-check">
 						<% if devise_mapping.rememberable? %>
 							<%= f.check_box :remember_me, class:"form-check-input" , id:"exampleCheck" %>
-							<%= f.label :remember_me, class:"form-check-label", for:"exampleCheck1" %>
+							<%= f.label :remember_me, "Recordarme",class:"form-check-label", for:"exampleCheck1" %>
 						<% end %>
           			</div>
 					<div class="d-flex justify-content-center">
-						<%= f.submit "Submit", class:"btn btn-success btn-sm btn-block" %>
+						<%= f.submit "Ingresar", class:"btn btn-success btn-sm btn-block" %>
 					</div>
 				<% end %>
 			</div>
