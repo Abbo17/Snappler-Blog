@@ -11,5 +11,9 @@ class CreateProducts < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_index :products, :name,                unique: true
+
   end
 end
+##add_index :products, [:name, :cod], :unique => true

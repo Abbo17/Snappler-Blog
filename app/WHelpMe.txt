@@ -1,0 +1,7 @@
+rails db:drop db:create db:migrate
+
+
+################################ Cosas para hacer ##############33
+
+Agregar username como campo unico y obligatorio
+Inhabilitar el registro
