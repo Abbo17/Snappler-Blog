@@ -5,8 +5,9 @@ Rails.application.routes.draw do
     resources :products do
     end
     resources :categories, only: [:index, :create,:destroy]
-    resources :tags do
+    resources :tags , only: [:index, :create,:destroy]do
     end
+    resources :sliders
     resources :users, only: [:index, :new]
     root to: 'base#index'
   end

@@ -13,7 +13,7 @@
         </div>
         <div class="modal-body">
           <%= form_for @category , url: admin_categories_path(@category) do |f| %>
-            <div class="form-group">
+            <div class="form-group col">
               <%= f.label :name, "Categoria: ", class:"col-form-lab" %>
               <%= f.text_field :name,class: "form-control" ,id:"recipient-name", placeholder: "Escriba el nombre de la categoria", required:true  %>
             </div>

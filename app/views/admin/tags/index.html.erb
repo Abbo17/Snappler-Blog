@@ -13,11 +13,10 @@
         </div>
         <div class="modal-body">
           <%= form_for @tag , url: admin_tags_path(@tag) do |f| %>
-            <div class="form-group">
+            <div class="form-group col">
               <%= f.label :name, "Cagogery: ", class:"col-form-lab" %>
               <%= f.text_field :name,class: "form-control" ,id:"recipient-name", placeholder: "Escriba el nombre de la etiqueta", required:true  %>
             </div>
-            <%= f.submit "Nueva facultad", class:"btn btn-default" %>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
               <%= f.submit "Nueva Etiqueta", class:"btn btn-primary" %>
