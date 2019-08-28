@@ -2,7 +2,7 @@ class Admin::TagsController < AdminController
     add_breadcrumb "Etiquetas", :admin_tags_path
     before_action :authenticate_user!
     def index
-        @tag = Tag.all
+        @tags = Tag.all
     end
 
     def destroy
