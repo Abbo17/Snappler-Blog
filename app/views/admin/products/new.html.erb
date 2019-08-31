@@ -1,0 +1,59 @@
+<%= form_for @product , url: admin_products_path(@product) do |f| %>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <%= f.label :name, "Nombre: " %>
+            <%= f.text_field :name,class: "form-control" , placeholder: "Escriba el nombre del producto", required:true  %>
+        </div>
+        <div class="form-group col-md-3">
+            <%= f.label :cod, "Codigo: " %>
+            <%= f.number_field :cod,class: "form-control" , placeholder: "Escriba el codigo del producto", required:true  %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCategory">Categoria</label>
+            <%= f.collection_select(:category_id, Category.all, :id, :name, {:prompt => false}, {class:"form-control", required:true} )%>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-check">
+                <%= f.check_box :active , class:"form-check-input"%>
+                <label class="form-check-label" for="activeCheck">
+                    Active
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputTag">Tags</label>
+                <%= f.collection_select :tag_ids, Tag.all, :id, :name, {}, { multiple: true,class:"form-control",required:false  }%>
+            </label>
+        </div>
+    </div>
+  
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <%= f.label :cod, "Precio: " %>
+            <%= f.number_field :price,class: "form-control" ,min:"0" ,step:"0.1" , placeholder: "Escriba el Precio del producto"  %>
+        </div>
+        <div class="form-group col-md-4">
+            <%= f.label :cod, "Costo: " %>
+            <%= f.number_field :cost,class: "form-control" ,min:"0" ,step:"0.1" , placeholder: "Escriba el Costo del producto"  %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :description, "Descripción: " %>
+        <%= f.text_field :description,class: "form-control" , placeholder: "Escriba la descripción del producto", required:true  %>
+    </div>
+
+    <div class="form-group">
+        <label for="inputImage">Imagen</label>
+        <%= f.file_field :image, class:"form-control-file",required:true %>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+        <%= f.submit "Nuevo Producto", class:"btn btn-primary" %>
+    </div>
+<% end %>

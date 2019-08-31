@@ -20,10 +20,10 @@ class Admin::TagsController < AdminController
             if @tag.save
                   redirect_to admin_tags_path
             else
-                  render :new_admin_tags_path
+                  render :admin_tags_path
             end
         else
-            redirect_to new_admin_tags_path
+            redirect_to admin_tags_path
         end
 
     end

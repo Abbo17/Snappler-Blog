@@ -20,10 +20,10 @@ class Admin::CategoriesController < AdminController
             if @category.save
                   redirect_to admin_categories_path
             else
-                  render :new_admin_category_path
+                  render :admin_categories_path
             end
         else
-            redirect_to new_admin_category_path
+            redirect_to admin_categories_path
         end
 
     end

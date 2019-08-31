@@ -13,7 +13,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
     end
 
     add_index :products, :name,                unique: true
-
+    add_index :products, :cod,                unique: true
   end
 end
 ##add_index :products, [:name, :cod], :unique => true
