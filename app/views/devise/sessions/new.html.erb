@@ -8,10 +8,10 @@
 			<div class="card-body">
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 					<div class="input-group form-group">
-           				<%= f.text_field :email, autofocus: true, class:"form-control",  placeholder:"Email" %>				
+           				<%= f.text_field :username, autofocus: true, class:"form-control",  placeholder:"Usuario" %>				
 					</div>
 					<div class="input-group form-group">
-            			<%= f.password_field :password, autocomplete: "current-password" ,class:"form-control" , placeholder:"Password" %>
+            			<%= f.password_field :password, autocomplete: "current-password" ,class:"form-control" , placeholder:"Contraseña" %>
 					</div>
 					<div class="form-group form-check">
 						<% if devise_mapping.rememberable? %>

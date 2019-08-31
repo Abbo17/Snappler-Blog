@@ -12,10 +12,9 @@ Rails.application.routes.draw do
     root to: 'base#index'
   end
   
-  resources :welcomes
-  devise_for :users, path: 'admin' #, only:[:sessions]
+  devise_for :users, path: 'admin' , only:[:sessions]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root 'welcome#index'
+  root 'admin/base#index'
 end

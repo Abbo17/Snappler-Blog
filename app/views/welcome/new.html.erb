@@ -1,7 +1,0 @@
- <% @welcome= Welcome.new %>
-      <%= form_for @welcome do |f| %>
-       
-        <%= f.text_field :name,class: "form-control", placeholder: "Escriba el nombre de la facultad", required:true  %>
-       <%= f.submit "Nueva facultad", class:"btn btn-default" %>
-
-      <% end %>
