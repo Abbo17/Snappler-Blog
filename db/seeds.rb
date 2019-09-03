@@ -1,1 +1,1 @@
-User.create(:username => "Abbo", :email => "abbo@hotmail.com", :password => "asdasd", :password_confirmation => "asdasd")
+User.create(:username => "Admin", :email => "admin@hotmail.com", :password => "asdasd", :password_confirmation => "asdasd")
