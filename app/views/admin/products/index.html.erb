@@ -18,12 +18,17 @@
 					<tbody>
 						<tr>
 						<td class="w-25">
-							<%= image_tag(url_for(product.image),class:'img-fluid img-thumbnail' , alt:"Slider") %>
+							<% imageActive = product.imageActive %>
+							<% product.images.each do |image| %>
+								<% if product.imageActive == image.id %>
+									<%= image_tag(url_for(image),class:'img-fluid img-thumbnail' , alt:"Slider") %>
+								<% end %>
+							<% end %>
 						</td>
-						<td><%= product.name %></td>
+						<td><%= link_to product.name, admin_product_path(:id => product.id) %></td>
 						<td><%= product.active %></td>
 						<td><%= product.price %></td>
-						<td>X</td>
+						<td><%= link_to "X", admin_product_path(:id => product.id), :method => :delete ,data:{confirm:"Estas seguro de borrar este producto"} %></td>
 						</tr>
 					</tbody>
 				<% end %>

@@ -1,0 +1,29 @@
+<div class="container">
+	<br>
+	<div class="row">
+		<div class="col-12">
+			<table class="table table-image">
+				<thead>
+					<tr>
+					<th scope="col">Imagen</th>
+					<th scope="col">ID</th>
+                    <th scope="col"></th>
+					</tr>
+				</thead>
+				<% @product.images.each do |image| %>
+					<tbody>
+						<tr>
+						<td class="w-25">
+							<%= image_tag(url_for(image),class:'img-fluid img-thumbnail' , alt:"Slider") %>
+						</td>
+						<td><%= image.id %></td>
+                        <td>  <%= link_to "Seleccionar", selectImages_admin_product_path(:product_id => @product.id,:image_id => image.id)   %></td>
+						</tr>
+					</tbody>
+				<% end %>
+			</table>   
+		</div>
+	</div>
+
+</div>
+

@@ -1,4 +1,4 @@
-<%= form_for @product , url: admin_products_path(@product) do |f| %>
+<%= form_for @product , url: admin_product_path(@product) do |f| %>
     <div class="form-row">
         <div class="form-group col-md-6">
             <%= f.label :name, "Nombre: " %>
@@ -46,11 +46,12 @@
         <%= f.label :description, "Descripción: " %>
         <%= f.text_field :description,class: "form-control" , placeholder: "Escriba la descripción del producto", required:true  %>
     </div>
-
+    
     <div class="form-group">
         <label for="inputImage">Imagen</label>
-         <%= f.file_field :images , class:"form-control-file" ,multiple: true,required:true %>
+        <%= f.file_field :images , class:"form-control-file" ,multiple: true,required:false %>
     </div>
+
     <div class="form-group">
         <%= link_to "Volver", admin_products_path,class:"btn btn-secondary"  %>
         <%= f.submit "Siguiente", class:"btn btn-primary" %>

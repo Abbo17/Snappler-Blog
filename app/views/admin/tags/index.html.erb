@@ -1,38 +1,12 @@
 <% @tag = Tag.new%>
 
 <div class ="container">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nueva Etiqueta</button>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nueva Etiqueta</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <%= form_for @tag , url: admin_tags_path(@tag) do |f| %>
-            <div class="form-group col">
-              <%= f.label :name, "Cagogery: ", class:"col-form-lab" %>
-              <%= f.text_field :name,class: "form-control" ,id:"recipient-name", placeholder: "Escriba el nombre de la etiqueta", required:true  %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-              <%= f.submit "Nueva Etiqueta", class:"btn btn-primary" %>
-            </div>
-          <% end %>
-         
-        </div>
-
-      </div>
-    </div>
-  </div>
+  <%= link_to "Nueva Etiqueta", new_admin_tag_path,  class:"btn btn-primary" %>
   <hr>
   <% @tags.order("created_at desc").each do |tag| %>
     <div>
       <div class="panel-heading d-flex">
-        <h4 class="d-inline"><%= tag.name %></h4>
+        <%= link_to tag.name, admin_tag_path(:id => tag.id)  ,class:"d-inline"  %>
         <%= link_to "X", admin_tag_path(:id => tag.id), :method => :delete,  class:"d-inline material-icons ml-auto",data:{confirm:"Estas seguro de borrar esta Etiqueta"} %>
       </div>
       <hr>

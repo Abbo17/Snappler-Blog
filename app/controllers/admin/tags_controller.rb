@@ -5,17 +5,29 @@ class Admin::TagsController < AdminController
         @tags = Tag.all
     end
 
-    def destroy
+    def destroy       
         @tag=Tag.find(params[:id])
-        @tag.destroy
-        redirect_to admin_tags_path
+        @cant = @tag.products.count
+        if (@cant == 0)
+            @tag.destroy
+            redirect_to admin_tags_path
+        else
+            redirect_to admin_tags_path
+        end
+    end
+
+    def new
+        @tag = Tag.new
     end
 
     def create
+        add_breadcrumb "Nueva Etiqueta", :new_admin_tag_path
         @tag = Tag.new(
             params.require(:tag)
             .permit(:name))
+
         @cantidad = Tag.where(name: @tag.name).count
+    
         if @cantidad == 0 
             if @tag.save
                   redirect_to admin_tags_path
@@ -27,4 +39,26 @@ class Admin::TagsController < AdminController
         end
 
     end
+
+    def show
+        add_breadcrumb "Ver Etiqueta ", :admin_tag_path
+        @tag=Tag.find(params[:id])
+    end
+
+    def update
+    
+        @tag = Tag.find(params[:id])
+        
+        @cantTagName = Tag.where(name: params[:tag][:name]).count
+
+        if (@cantTagName == 0 )
+            @tag.update(name: params[:tag][:name])
+            
+            redirect_to admin_tags_path
+        else
+            redirect_to admin_tags_path
+        end
+
+    end
 end
+

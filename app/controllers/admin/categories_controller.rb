@@ -7,10 +7,19 @@ class Admin::CategoriesController < AdminController
 
     def destroy
         @category=Category.find(params[:id])
-        @category.destroy
-        redirect_to admin_categories_path
+        @cant = @category.products.count
+        if (@cant == 0)
+            @category.destroy
+            redirect_to admin_categories_path
+        else
+            redirect_to admin_categories_path
+        end
     end
 
+    def new 
+        add_breadcrumb "Nueva categoria", :new_admin_category_path
+        @category = Category.new();
+    end 
     def create
         @category = Category.new(
             params.require(:category)
@@ -22,6 +31,27 @@ class Admin::CategoriesController < AdminController
             else
                   render :admin_categories_path
             end
+        else
+            redirect_to admin_categories_path
+        end
+
+    end
+
+    def show
+        add_breadcrumb "Ver Categoria ", :admin_category_path
+        @category=Category.find(params[:id])
+    end
+
+    def update
+    
+        @category = Category.find(params[:id])
+        
+        @cantCategoryName = Category.where(name: params[:category][:name]).count
+
+        if (@cantCategoryName == 0 )
+            @category.update(name: params[:category][:name])
+            
+            redirect_to admin_categories_path
         else
             redirect_to admin_categories_path
         end

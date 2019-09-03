@@ -17,3 +17,9 @@ Cosas insignificantes
 Botton nuevo usuario a la derecha
 
 Arreglar los mensajes de error
+
+
+#Preguntas Snappler"
+
+Preguntar por cuantas imagenes tiene el producto si dos o un arreglo
+y como updatear las imagenes

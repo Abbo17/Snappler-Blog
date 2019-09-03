@@ -8,6 +8,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.float   :price,                    default:0.0
       t.float   :cost,                     default:0.0
       t.boolean :active,                   default:true
+      t.integer :imageActive,               default: 0
 
       t.timestamps
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_235628) do
+ActiveRecord::Schema.define(version: 2019_09_02_003711) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,11 @@ ActiveRecord::Schema.define(version: 2019_08_28_235628) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
+  create_table "logos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "product_tags", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,6 +61,7 @@ ActiveRecord::Schema.define(version: 2019_08_28_235628) do
     t.float "price", default: 0.0
     t.float "cost", default: 0.0
     t.boolean "active", default: true
+    t.integer "imageActive", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"

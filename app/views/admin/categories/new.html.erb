@@ -1,0 +1,17 @@
+<div class="cotainer ml-2">
+    <%= form_for @category , url: admin_categories_path(@category) do |f| %>
+        <div class="form-group row">
+            <%= f.label :name, "Nombre: ", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-4">
+                <%= f.text_field :name,class: "form-control" , placeholder: "Escriba el nombre de la categoria", required:true  %>
+            </div>
+        </div>
+    
+        
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <%= f.submit "Nueva Categoria", class:"btn btn-primary" %>
+            </div>
+        </div>
+    <% end %>
+</div>

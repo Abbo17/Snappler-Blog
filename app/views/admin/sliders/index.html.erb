@@ -1,47 +1,50 @@
-<% @slider = Slider.new%>
-<div class = "container">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nueva Slider</button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Slider</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <%= form_for @slider , url: admin_sliders_path(@slider) do |f| %>
-                        <div class="form-group col">
-                            <%= f.label :name, "Slider: ", class:"col-form-lab" %>
-                            <%= f.text_field :name ,class: "form-control" ,id:"recipient-name", placeholder: "Escriba el nombre del slider", required:true  %>
-                        </div>
-                        <div class="form-group col">
-                            <%= f.file_field :image, required:true %>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                        <%= f.submit "Nuevo Slider", class:"btn btn-primary" %>
-                        </div>
-                    <% end %>
-            
-                </div>
-
+<div class="container">
+	<h2>Logo:</h2>
+	<% if @logoActual.image.attached? %>
+		<%= image_tag(url_for(@logoActual.image),class:'img-fluid img-thumbnail' , alt:"Slider") %>
+	<% end %>
+	<hr>
+	<%= form_for @logo , url: admin_logos_path(@logo) do |g| %>
+		<div class="form-group row">
+            <%= g.label :name, "Imagen: ", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-4">
+               <%= g.file_field :image, required:true %>
             </div>
         </div>
-    </div>
-    <hr>
-
-   <% @sliders.order("created_at desc").each do |slider| %>
-        <div class="col ">
-            <div class="row ">
-                <%= image_tag(url_for(slider.image),class:'w-25' , alt:"Slider") %>
-                <div class="panel-heading d-flex">
-                    <h4 class="d-inline ml-2 m-2"> <%= slider.name%></h4>
-                    <%= link_to "X", admin_slider_path(:id => slider.id), :method => :delete,  class:"d-inline material-icons ml-auto",data:{confirm:"Estas seguro de borrar esta Etiqueta"} %>
-                </div>
+        
+		<div class="form-group row">
+            <div class="col-sm-10">
+                <%= g.submit "Nuevo Logo", class:"btn btn-primary" %>
             </div>
-            <hr>
         </div>
-    <% end %>
+	<% end %>
+	<hr>
+ 	<%= link_to "Nuevo Slider", new_admin_slider_path,  class:"btn btn-primary" %>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-12">
+			<table class="table table-image">
+				<thead>
+					<tr>
+					<th scope="col">Imagen</th>
+					<th scope="col">Nombre</th>
+					<th scope="col"></th>
+					</tr>
+				</thead>
+				<% @sliders.order("created_at desc").each do |slider| %>
+					<tbody>
+						<tr>
+						<td class="w-25">
+							<%= image_tag(url_for(slider.image),class:'img-fluid img-thumbnail' , alt:"Slider") %>
+						</td>
+						<td><%= link_to slider.name, admin_slider_path(:id => slider.id) %></td>
+						<td><%= link_to "X", admin_slider_path(:id => slider.id), :method => :delete ,data:{confirm:"Estas seguro de borrar este slider"} %></td>
+						</tr>
+					</tbody>
+				<% end %>
+			</table>   
+		</div>
+	</div>
+</div>
 </div>

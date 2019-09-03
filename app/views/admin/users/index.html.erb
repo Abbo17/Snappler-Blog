@@ -1,12 +1,29 @@
-
-
-<div class ="container">
-  <button type="button" class="btn btn-primary" >Nuevo usuario</button>
-  <hr>
-  <% @users.order("created_at desc").each do |user| %>
-    <%= user.email %>
-    <hr>
-  <% end %>
-
-
+<div class="container">
+ 	<%= link_to "Nuevo Usuario", new_admin_user_path,  class:"btn btn-primary" %>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-12">
+			<table class="table table-image">
+				<thead>
+					<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Email</th>
+					<th scope="col"></th>
+					</tr>
+				</thead>
+				<% @users.order("created_at desc").each do |user| %>
+					<tbody>
+						<tr  class="<%= (current_user.username == user.username) ? 'table-active' : ' ' %>">
+						<td><%= user.id %></td>
+						<td><%= link_to user.username, admin_user_path(:id => user.id) %></td>
+						<td><%= user.email %></td>
+						<td><%= link_to "X", admin_user_path(:id => user.id), :method => :delete ,data:{confirm:"Estas seguro de borrar este Usuario"} %></td>
+						</tr>
+					</tbody>
+				<% end %>
+			</table>   
+		</div>
+	</div>
 </div>

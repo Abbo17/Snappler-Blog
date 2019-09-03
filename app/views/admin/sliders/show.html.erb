@@ -1,0 +1,22 @@
+<div class="cotainer ml-2">
+    <%= form_for @slider , url: admin_slider_path(@slider) do |f| %>
+        <div class="form-group row">
+            <%= f.label :name, "Nombre: ", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-4">
+                <%= f.text_field :name,class: "form-control" , placeholder: "Escriba el nombre del slider", required:true  %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :image, "Imagen: ", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-4">
+               <%= f.file_field :image, required:true %>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <%= f.submit "Actualizar Slider", class:"btn btn-primary" %>
+            </div>
+        </div>
+    <% end %>
+</div>
