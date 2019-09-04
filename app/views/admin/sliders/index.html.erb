@@ -1,6 +1,6 @@
 <div class="container">
 	<h2>Logo:</h2>
-	<% if @logoActual.image.attached? %>
+	<% if @logoActual.present? %>
 		<%= image_tag(url_for(@logoActual.image),class:'img-fluid img-thumbnail' , alt:"Slider") %>
 	<% end %>
 	<hr>
