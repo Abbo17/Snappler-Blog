@@ -1,0 +1,53 @@
+<% @categories = Category.all %>
+<% @logo = Logo.first %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SnapplerBlog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'fronted/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'fronted/application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <% if @logo.present? %>
+            	<%= image_tag(url_for(@logo.image),class:'d-inline-block align-top' , width:30, height:30, alt:"Logo") %>
+          <% end %>
+          Logo
+        </a>
+
+      <div class="collapse navbar-collapse " id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+          
+            <%= link_to "Productos", fronted_catalogo_index_path(:opcion => 0),  class:"nav-link"%> 
+          </li>
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categorias
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% @categories.order("created_at desc").each do |category| %>
+                <a class="dropdown-item" href="#"><%= category.name %></a>
+                <div class="dropdown-divider"></div>
+              <% end %>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <%= yield %>
+    <br>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="mt-4">
+        <p>Footer</p>
+      </div>
+    </footer>
+</body>
+</html>

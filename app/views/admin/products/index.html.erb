@@ -21,7 +21,7 @@
 							<% imageActive = product.imageActive %>
 							<% product.images.each do |image| %>
 								<% if product.imageActive == image.id %>
-									<%= image_tag(url_for(image),class:'img-fluid img-thumbnail' , alt:"Slider") %>
+									<%= image_tag(url_for(image),class:'img-fluid img-thumbnail' , alt:"Image") %>
 								<% end %>
 							<% end %>
 						</td>

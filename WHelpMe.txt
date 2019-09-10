@@ -17,6 +17,7 @@ Cosas insignificantes
 Botton nuevo usuario a la derecha
 
 Arreglar los mensajes de error
+Editar perfil
 
 
 #Preguntas Snappler"

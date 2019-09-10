@@ -1,0 +1,55 @@
+<% 
+    if !@orden.present?
+        @orden = 'name ASC'
+    end
+%>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-product">
+  <a class="navbar-brand" href="#">Productos</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <%= form_tag fronted_catalogo_index_path , method: :get ,class:"form-inline my-2 my-lg-0 ml-auto"  do %>
+        <%= text_field_tag :search, params[:concept], class: "form-control mr-sm-2", placeholder: "Buscar" %>
+        <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name", params[:category_id]), prompt: "Categoría", class: "form-control" %>
+        <%= hidden_field_tag :opcion, 1 %>
+        <%= submit_tag "Buscar", name: nil, class: "btn btn-primary btn-md ml-2" %>
+    <% end %>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="dropdown show mt-2 ml-5">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Ordenar
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <%= link_to "Ordenar A-Z", fronted_catalogo_index_path(:opcion => 2,:orden => 1,:search => @search, :category => @category),  class:"dropdown-item"%> 
+        <%= link_to "Ordenar Z-A", fronted_catalogo_index_path(:opcion => 2,:orden => 2,:search => @search, :category => @category),  class:"dropdown-item"%> 
+        <%= link_to "Ordenar por precio Ascendente", fronted_catalogo_index_path(:opcion => 2,:orden => 3,:search => @search, :category => @category),  class:"dropdown-item"%> 
+        <%= link_to "Ordenar por precio Descendente", fronted_catalogo_index_path(:opcion => 2,:orden => 4,:search => @search, :category => @category),  class:"dropdown-item"%> 
+    </div>
+    </div>
+    <div class="row">
+        <% @products.order(@orden).each() do |product| %>
+            <div class="col-sm-3 ml-5 mt-5">
+                <div class="card" style="width: 18rem;">
+                    <% imageActive = product.imageActive %>
+                    <% product.images.each do |image| %>
+                        <% if product.imageActive == image.id %>
+                            <%= image_tag(url_for(image),class: 'card-img-top' , alt:"") %>
+                        <% end %>
+                    <% end %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product.name%></h5>
+                        <p class="card-text"><%= product.price %></p>
+                        <a href="#" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

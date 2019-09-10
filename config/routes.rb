@@ -14,9 +14,13 @@ Rails.application.routes.draw do
     root to: 'base#index'
   end
   
-  devise_for :users, path: 'admin' #, only:[:sessions]
+  namespace :fronted do
+    resources :home
+    resources :catalogo
+  end
+  devise_for :users, path: 'admin' , only:[:sessions]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root 'admin/base#index'
+  root 'fronted/home#index'
 end
