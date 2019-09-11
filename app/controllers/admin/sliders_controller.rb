@@ -6,7 +6,7 @@ class Admin::SlidersController < AdminController
     def index
         @logoActual = Logo.first
         @logo = Logo.new
-        @sliders = Slider.all
+        @sliders = Slider.page(params[:page])
     end
 
     def new 

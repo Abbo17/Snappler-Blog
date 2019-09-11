@@ -17,7 +17,7 @@
           <% if @logo.present? %>
             	<%= image_tag(url_for(@logo.image),class:'d-inline-block align-top' , width:30, height:30, alt:"Logo") %>
           <% end %>
-          Logo
+          <%= link_to "Logo", root_path,  class:"navbar-brand"%>
         </a>
 
       <div class="collapse navbar-collapse " id="navbarNavDropdown">
@@ -32,7 +32,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% @categories.order("created_at desc").each do |category| %>
-                <a class="dropdown-item" href="#"><%= category.name %></a>
+                <%= link_to category.name, fronted_catalogo_index_path(:opcion => 1,:category_id => category.id),  class:"dropdown-item"%>
                 <div class="dropdown-divider"></div>
               <% end %>
             </div>

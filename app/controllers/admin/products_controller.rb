@@ -3,7 +3,7 @@ class Admin::ProductsController < AdminController
     before_action :authenticate_user!
 
     def index
-        @products = Product.all
+        @products = Product.page(params[:page])
     end
 
     def new 

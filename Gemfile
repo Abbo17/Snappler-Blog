@@ -68,3 +68,5 @@ gem 'bootstrap'
 gem 'jquery-rails'
 
 gem "breadcrumbs_on_rails"
+
+gem 'kaminari'

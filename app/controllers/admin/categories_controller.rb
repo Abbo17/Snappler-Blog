@@ -2,7 +2,7 @@ class Admin::CategoriesController < AdminController
     add_breadcrumb "Categorias", :admin_categories_path
     before_action :authenticate_user!
     def index
-        @categories = Category.all
+        @categories = Category.page(params[:page])
     end
 
     def destroy

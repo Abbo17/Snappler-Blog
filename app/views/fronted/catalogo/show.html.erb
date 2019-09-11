@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-product">
+  <a class="navbar-brand" href="#"><%= @product.name %></a>
+</nav>
+<br>
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-4">
+			<h4 class="catalogo-title">Categoria</h4>
+			<p><%= @product.category.name %></p>
+		</div>
+
+		<div class="col-md-4">
+			<h4 class="catalogo-title">Price</h4>
+			<span class="badge badge-warning"><%= @product.price %></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<h4 class="catalogo-title">Descripción</h4>
+			<p><%= @product.description %></p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<h4 class="catalogo-title">Tags</h4>
+			<% @product.tags.each do |tag| %>
+				<span class="badge badge-secondary"><%= tag.name %></span>
+			<% end %>
+		</div> 
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-6">
+			<h4 class="catalogo-title">Foto Principal</h4>
+			<% @product.images.each do |image| %>
+				<% if @product.imageActive == image.id %>
+					<%= image_tag(url_for(image),class:'img-fluid img-thumbnail' , alt:"Image") %>
+				<% end %>
+			<% end %>
+		</div> 
+	</div>
+	<br>
+	<div class="col">
+		<h4 class="catalogo-title">Foto Secundarias</h4>
+		<div class="row-md-6">		
+			<% @product.images.each do |image| %>
+				<% if @product.imageActive != image.id %>
+					<%= image_tag(url_for(image),class:'img-fluid img-thumbnail' , alt:"Image") %>
+				<% end %>
+			<% end %>
+		</div> 
+	</div>
+</div>
