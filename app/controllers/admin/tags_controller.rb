@@ -60,7 +60,7 @@ class Admin::TagsController < AdminController
             redirect_to admin_tags_path
         else
             @error = "La etiqueta ya existe"
-            render :new
+            render :show
         end
 
     end
