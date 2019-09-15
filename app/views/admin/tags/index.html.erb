@@ -13,5 +13,7 @@
     </div>
   <% end %>
   <%= paginate @tags %>
-
+  <% if @error.present? %>
+      <p class="alert alert-danger"><%= @error %></p>
+  <% end %>
 </div>

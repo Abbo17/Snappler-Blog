@@ -19,4 +19,7 @@
             </div>
         </div>
     <% end %>
+    <% if @error.present? %>
+        <p class="alert alert-danger"><%= @error %></p>
+    <% end %>
 </div>

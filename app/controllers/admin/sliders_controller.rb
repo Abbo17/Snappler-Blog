@@ -26,7 +26,8 @@ class Admin::SlidersController < AdminController
                   render :new_admin_sliders_path
             end
         else
-            redirect_to new_admin_sliders_path
+            @error = "El nombre del slider esta en uso"
+            render :new
         end
     end
 
@@ -44,15 +45,21 @@ class Admin::SlidersController < AdminController
     def update
     
         @slider = Slider.find(params[:id])
+        @cantSlidername = 0
 
-        if (true)
+        if (@slider.name != params[:slider][:name])
+            @cantSlidername = Slider.where(name: params[:slider][:name]).count
+        end
+
+        if (@cantSlidername == 0 )
             @slider.update( name: params[:slider][:name],
                             image: params[:slider][:image]
                             )
             
             redirect_to admin_sliders_path
         else
-            redirect_to admin_sliders_path
+            @error = "El nombre del Slider esta en uso"
+            render :show
         end
 
     end

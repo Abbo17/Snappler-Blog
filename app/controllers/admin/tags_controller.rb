@@ -12,7 +12,9 @@ class Admin::TagsController < AdminController
             @tag.destroy
             redirect_to admin_tags_path
         else
-            redirect_to admin_tags_path
+            @error = "La etiqueta contiene productos y no puede ser eliminada"
+            @tags = Tag.page(params[:page])
+            render :index
         end
     end
 
@@ -35,7 +37,8 @@ class Admin::TagsController < AdminController
                   render :admin_tags_path
             end
         else
-            redirect_to admin_tags_path
+            @error = "La etiqueta ya existe"
+            render :new
         end
 
     end
@@ -56,7 +59,8 @@ class Admin::TagsController < AdminController
             
             redirect_to admin_tags_path
         else
-            redirect_to admin_tags_path
+            @error = "La etiqueta ya existe"
+            render :new
         end
 
     end

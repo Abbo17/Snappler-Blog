@@ -12,8 +12,10 @@ class Admin::CategoriesController < AdminController
             @category.destroy
             redirect_to admin_categories_path
         else
-            redirect_to admin_categories_path
-        end
+            @error = "La categoria contiene productos y no puede ser eliminada"
+            @categories = Category.page(params[:page])
+            render :index
+        end      
     end
 
     def new 
@@ -32,7 +34,8 @@ class Admin::CategoriesController < AdminController
                   render :admin_categories_path
             end
         else
-            redirect_to admin_categories_path
+            @error = "La categoría ya existe"
+            render :new
         end
 
     end
@@ -53,7 +56,8 @@ class Admin::CategoriesController < AdminController
             
             redirect_to admin_categories_path
         else
-            redirect_to admin_categories_path
+            @error = "La categoría ya existe"
+            render :show
         end
 
     end

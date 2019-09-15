@@ -27,4 +27,7 @@
 			<%= paginate @users %>  
 		</div>
 	</div>
+	<% if @error.present? %>
+        <p class="alert alert-danger"><%= @error %></p>
+    <% end %>
 </div>

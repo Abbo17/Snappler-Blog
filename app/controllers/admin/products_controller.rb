@@ -34,7 +34,12 @@ class Admin::ProductsController < AdminController
 				redirect_to admin_products_path
             end
         else
-            redirect_to admin_products_path
+            if (@cantidadName != 0)
+                @error = "El nombre del producto ya existe"
+            else
+                @error = "El codigo del producto ya existe"
+            end
+            render :new
         end
     end
     
@@ -45,11 +50,17 @@ class Admin::ProductsController < AdminController
 
     def update
         @product = Product.find(params[:id])
+        @cantProductName = 0
+        @cantProductCod = 0
 
-        @cantProductName = Product.where(name: params[:product][:name]).count
-        @cantProductCod = Product.where(cod: params[:product][:cod]).count
-
-        if (@cantProductName <= 1 && @cantProductCod <= 1)
+        if (params[:product][:name] != @product.name)
+            @cantProductName = Product.where(name: params[:product][:name]).count
+        end
+        if (params[:product][:cod].to_i != @product.cod)
+            @cantProductCod = Product.where(cod: params[:product][:cod]).count
+        end
+        
+        if (@cantProductName == 0 && @cantProductCod == 0)
             @product.update(name: params[:product][:name], 
                         description: params[:product][:description], 
                         cod: params[:product][:cod],
@@ -69,7 +80,12 @@ class Admin::ProductsController < AdminController
             
             redirect_to showImages_admin_product_path(:id => @product.id)
         else
-            redirect_to admin_products_path
+            if (@cantProductName != 0)
+                @error = "El nombre del producto ya existe"
+            else
+                @error = "El codigo del producto ya existe"
+            end
+            render :show
         end
 
     end

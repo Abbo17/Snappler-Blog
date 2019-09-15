@@ -24,7 +24,12 @@ class Admin::UsersController < AdminController
                   redirect_to admin_users_path
             end
         else 
-            redirect_to admin_users_path
+            if (@cantUserName != 0)
+                @error = "El nombre de usuario ya esta en uso"
+            else
+                @error = "El email ya esta en uso"
+            end
+            render :new
         end
     end
 
@@ -35,7 +40,9 @@ class Admin::UsersController < AdminController
             @user.destroy
             redirect_to admin_users_path
         else
-            redirect_to admin_users_path
+            @error = "Ese es tu usuario!"
+            @users = User.page(params[:page])
+            render :index
         end
         
   
@@ -49,9 +56,15 @@ class Admin::UsersController < AdminController
     def update
     
         @user = User.find(params[:id])
-        
-        @cantUserName = User.where(username: params[:user][:username]).count
-        @cantUserEmail = User.where(email: params[:user][:email]).count
+        @cantUserEmail = 0
+        @cantUserName = 0
+
+        if (params[:user][:username] != @user.username)
+            @cantUserName = User.where(username: @user.username).count
+        end
+        if (params[:user][:email] != @user.email)
+            @cantUserEmail = User.where(email: @user.email).count
+        end
         
         if (@cantUserName == 0 && @cantUserEmail == 0)
             @user.update(username: params[:user][:username], 
@@ -62,7 +75,12 @@ class Admin::UsersController < AdminController
             
             redirect_to admin_users_path
         else
-            redirect_to admin_users_path
+            if (@cantUserName != 0)
+                @error = "El nombre de usuario ya esta en uso"
+            else
+                @error = "El email ya esta en uso"
+            end
+            render :show
         end
 
     end

@@ -10,8 +10,11 @@
         
         <div class="form-group row">
             <div class="col-sm-10">
-                <%= f.submit "Nueva Categoria", class:"btn btn-primary" %>
+                <%= f.submit "Actualizar Categoria", class:"btn btn-primary" %>
             </div>
         </div>
+    <% end %>
+    <% if @error.present? %>
+        <p class="alert alert-danger"><%= @error %></p>
     <% end %>
 </div>
